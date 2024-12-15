@@ -1,9 +1,17 @@
 import { z } from "zod";
 
+export const AddressSchema = z.object({
+  street: z.string().optional(),
+  city: z.string().optional(),
+  state: z.string().optional(),
+  zip: z.string().optional(),
+  country: z.string().optional(),
+});
+
 export const ContactInfoSchema = z.object({
   email: z.string().email(),
   phone: z.string().min(10).max(15),
-  address: z.string().optional(),
+  address: AddressSchema.optional(),
   linkedin: z.string().url().optional(),
   github: z.string().url().optional(),
   twitter: z.string().url().optional(),

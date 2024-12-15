@@ -8,7 +8,13 @@ export const profile: Profile = {
   contactInfo: {
     email: "john.doe@example.com",
     phone: "1234567890",
-    address: "123 Main St, Anytown, USA",
+    address: {
+      street: "123 Main St",
+      city: "Anytown",
+      state: "State",
+      zip: "12345",
+      country: "USA",
+    },
     linkedin: "https://www.linkedin.com/in/johndoe",
     github: "https://github.com/johndoe",
     twitter: "https://twitter.com/johndoe",
