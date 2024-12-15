@@ -10,13 +10,24 @@ export class ScraperManager {
   }
 
   async startScrapers() {
+    logger.info("Starting scrapers");
+
     for (const scraper of this.scrapers) {
       const interval = INTERVALS[scraper.constructor.name];
+
+      if (interval === undefined || interval < 0.05) {
+        throw new Error(
+          `Interval for ${scraper.constructor.name} is undefined`,
+        );
+      }
+
+      logger.info(`Scraping job listings using ${scraper.constructor.name}`);
+      scraper.getJobListings();
 
       setInterval(
         async () => {
           logger.info(
-            `Scraping job listings from ${scraper.constructor.name} scraper`,
+            `Scraping job listings using ${scraper.constructor.name}`,
           );
 
           await scraper.getJobListings();

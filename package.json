@@ -36,7 +36,10 @@
   "homepage": "https://github.com/quill-co/quill#readme",
   "dependencies": {
     "@browserbasehq/stagehand": "^1.7.0-alpha-cdaf3ea6fc7b9b999745631bb33ddfd8478a6d13",
+    "dotenv": "^16.4.7",
+    "p-queue": "^8.0.1",
     "pino": "^9.5.0",
+    "pino-pretty": "^13.0.0",
     "zod": "^3.24.1"
   }
 }
