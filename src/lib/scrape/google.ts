@@ -1,15 +1,16 @@
-import { JobListing, JobListingSchema } from "@/types/listing";
-import { BaseScraper } from "./base";
-import { Stagehand } from "@browserbasehq/stagehand";
 import env from "@/lib/env";
+import { JobListing, JobListingSchema } from "@/types/listing";
+import { Profile } from "@/types/profile";
+import { Stagehand } from "@browserbasehq/stagehand";
 import { z } from "zod";
+import { BaseScraper } from "./base";
 
 export class GoogleScraper extends BaseScraper {
   private query: string;
   private stagehand: Stagehand;
 
-  constructor() {
-    super();
+  constructor(profile: Profile) {
+    super(profile);
     this.query =
       "united states software intern apply site:boards.greenhouse.io";
     this.stagehand = new Stagehand({
