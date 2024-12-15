@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.2",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
@@ -29,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/quill-co/quill/issues"
   },
-  "homepage": "https://github.com/quill-co/quill#readme"
+  "homepage": "https://github.com/quill-co/quill#readme",
+  "dependencies": {
+    "zod": "^3.24.1"
+  }
 }
