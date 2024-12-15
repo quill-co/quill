@@ -40,6 +40,9 @@ export const ProfileSchema = z.object({
   summary: z.string().optional(),
   skills: z.array(z.string()).optional(),
   education: z.array(EducationSchema).optional(),
+  protectedVeteran: z.boolean().optional(),
+  race: z.string().optional(),
+  needsSponsorship: z.boolean().optional(),
 });
 
 export type Profile = z.infer<typeof ProfileSchema>;
