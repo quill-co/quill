@@ -22,8 +22,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup src/index.ts",
     "start": "npm run build && node dist/index.js",
-    "test:greenhouse": "tsup src/tests/greenhouse.ts && node dist/greenhouse.js",
-    "test:lever": "tsup src/tests/lever.ts && node dist/lever.js"
+    "test:greenhouse": "npm run build && tsup src/tests/greenhouse.ts && node dist/greenhouse.js",
+    "test:lever": "npm run build && tsup src/tests/lever.ts && node dist/lever.js"
   },
   "repository": {
     "type": "git",

@@ -11,7 +11,7 @@ export const AddressSchema = z.object({
 export const ContactInfoSchema = z.object({
   email: z.string().email(),
   phone: z.string().min(10).max(15),
-  address: AddressSchema.optional(),
+  address: AddressSchema,
   linkedin: z.string().url().optional(),
   github: z.string().url().optional(),
   twitter: z.string().url().optional(),

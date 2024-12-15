@@ -21,5 +21,17 @@ export const buildApplyPrompt = () => {
   Here's the information you need to fill out:
   ${JSON.stringify(profile, null, 2)}
   
-  If there is any information you do not have, just leave it blank. Do not submit the form, simply fill it out.`;
+  If there is any information you do not have, just leave it blank. Do not submit the form, simply fill it out. Do not try to upload a resume or other files, just simple inputs.`;
+};
+
+export const buildFillInputPrompt = (input: string, filledInputs: string[]) => {
+  if (filledInputs.includes(input)) {
+    return `Input field ${input} is already filled.`;
+  }
+  return `Fill out the input field: ${input}
+  Use this information to fill out the input field:
+  ${JSON.stringify(profile, null, 2)}
+  
+  If there is any information you do not have, just leave it blank. Do not submit the form, simply fill it out. Do not try to upload a resume or other files, just simple inputs.
+  If the provided input field is not a simple input, do no action here.`;
 };
