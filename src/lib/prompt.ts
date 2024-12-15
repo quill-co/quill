@@ -15,3 +15,11 @@ export const buildActionPrompt = () => {
   Here's the matching criteria:
   ${JSON.stringify(matchingConfig, null, 2)}`;
 };
+
+export const buildApplyPrompt = () => {
+  return `Apply to the job listing.
+  Here's the information you need to fill out:
+  ${JSON.stringify(profile, null, 2)}
+  
+  If there is any information you do not have, just leave it blank. Do not submit the form, simply fill it out.`;
+};

@@ -1,5 +1,6 @@
 // This is an example for how to input your profile into Quill.
 // Input your own information here and rename this file to profile.ts
+// Add your resume to src/config/resume.pdf
 
 import { Profile } from "@/types/profile";
 
