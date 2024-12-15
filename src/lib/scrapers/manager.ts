@@ -1,3 +1,4 @@
+import logger from "../logger";
 import { BaseScraper } from "./base";
 import { INTERVALS } from "@/config/intervals";
 
@@ -14,6 +15,10 @@ export class ScraperManager {
 
       setInterval(
         async () => {
+          logger.info(
+            `Scraping job listings from ${scraper.constructor.name} scraper`,
+          );
+
           await scraper.getJobListings();
         },
         interval * 60 * 60 * 1000,
