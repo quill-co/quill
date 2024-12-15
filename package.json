@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/quill-co/quill#readme",
   "dependencies": {
+    "@browserbasehq/stagehand": "^1.7.0-alpha-cdaf3ea6fc7b9b999745631bb33ddfd8478a6d13",
     "zod": "^3.24.1"
   }
 }

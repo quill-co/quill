@@ -1,6 +1,12 @@
 import { JobListing } from "@/types/listing";
+import { Profile } from "@/types/profile";
 
 export abstract class BaseScraper {
-  abstract format(data: any): JobListing;
+  public profile: Profile;
+
+  constructor(profile: Profile) {
+    this.profile = profile;
+  }
+
   abstract getJobListings(): Promise<JobListing[]>;
 }
