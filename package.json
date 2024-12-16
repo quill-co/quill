@@ -38,11 +38,14 @@
   },
   "homepage": "https://github.com/quill-co/quill#readme",
   "dependencies": {
+    "@quill-co/mailstream": "^1.0.0",
     "@browserbasehq/stagehand": "^1.7.0-alpha-571e58d835aadc4aa81512c60a614b8b6563d10a",
     "dotenv": "^16.4.7",
     "p-queue": "^8.0.1",
     "pino": "^9.5.0",
     "pino-pretty": "^13.0.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
     "zod": "^3.24.1"
   }
 }
