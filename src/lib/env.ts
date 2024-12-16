@@ -9,7 +9,7 @@ const environmentSchema = z.object({
   BROWSERBASE_API_KEY: z.string().min(1),
   ENV: z.union([z.literal("development"), z.literal("production")]),
   BROWSERBASE_PROJECT_ID: z.string().min(1),
-  BROWSERBASE_ENV: z.union([z.literal("LOCAL"), z.literal("BROWSERBASE")]),
+  BROWSER_ENV: z.union([z.literal("LOCAL"), z.literal("BROWSERBASE")]),
 });
 
 const env = environmentSchema.parse(process.env);

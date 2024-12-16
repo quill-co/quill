@@ -17,7 +17,7 @@ export class GoogleScraper extends BaseScraper {
     this.stagehand = new Stagehand({
       apiKey: env.BROWSERBASE_API_KEY,
       projectId: env.BROWSERBASE_PROJECT_ID,
-      env: env.BROWSERBASE_ENV,
+      env: env.BROWSER_ENV,
     });
   }
 
@@ -38,6 +38,7 @@ export class GoogleScraper extends BaseScraper {
       schema: z.object({
         listings: z.array(JobListingSchema),
       }),
+      useTextExtract: true,
     });
 
     logger.info(`Found ${listings.length} job listings`);
