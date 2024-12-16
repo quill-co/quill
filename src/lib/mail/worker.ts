@@ -3,10 +3,10 @@ import { BaseMailWorker } from "./base";
 import { LLMType, MailboxProvider } from "@/types/mail";
 import { Config, Mail } from "@quill-co/mailstream";
 import { db } from "@/lib/db";
+import { mailConfig } from "@/config/mail.example";
 
 export default class MailWorker extends BaseMailWorker {
   constructor(
-    mailConfig: Config,
     provider: LLMType = LLMType.OpenAI,
     emailProvider: MailboxProvider = MailboxProvider.Gmail
   ) {
