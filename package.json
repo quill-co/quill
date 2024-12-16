@@ -23,7 +23,8 @@
     "build": "tsup src/index.ts",
     "start": "npm run build && node dist/index.js",
     "test:greenhouse": "npm run build && tsup src/tests/greenhouse.ts && node dist/greenhouse.js",
-    "test:lever": "npm run build && tsup src/tests/lever.ts && node dist/lever.js"
+    "test:lever": "npm run build && tsup src/tests/lever.ts && node dist/lever.js",
+    "test:google": "npm run build && tsup src/tests/google.ts && node dist/google.js"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,7 @@
   },
   "homepage": "https://github.com/quill-co/quill#readme",
   "dependencies": {
-    "@browserbasehq/stagehand": "^1.7.0-alpha-cdaf3ea6fc7b9b999745631bb33ddfd8478a6d13",
+    "@browserbasehq/stagehand": "^1.7.0-alpha-571e58d835aadc4aa81512c60a614b8b6563d10a",
     "dotenv": "^16.4.7",
     "p-queue": "^8.0.1",
     "pino": "^9.5.0",

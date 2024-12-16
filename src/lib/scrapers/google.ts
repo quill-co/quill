@@ -38,6 +38,7 @@ export class GoogleScraper extends BaseScraper {
       schema: z.object({
         listings: z.array(JobListingSchema),
       }),
+      useTextExtract: true,
     });
 
     logger.info(`Found ${listings.length} job listings`);
