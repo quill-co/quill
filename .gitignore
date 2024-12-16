@@ -3,3 +3,6 @@ node_modules
 src/config/profile.ts
 dist
 src/config/resume.pdf
+
+# SQLite database
+*.db
