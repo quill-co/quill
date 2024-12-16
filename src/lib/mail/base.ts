@@ -1,7 +1,7 @@
 import logger from "@/lib/logger";
 import { LLMType } from "@/types/mail";
-import { OpenAIProvider } from "./ai/openai-provider";
-import { AnthropicProvider } from "./ai/anthropic-provider";
+import { OpenAIProvider } from "../ai/openai-provider";
+import { AnthropicProvider } from "../ai/anthropic-provider";
 import { Client, Config, Mail } from "@quill-co/mailstream";
 
 export abstract class BaseMailWorker {
