@@ -12,7 +12,7 @@ export abstract class BaseWorker {
     this.stagehand = new Stagehand({
       apiKey: env.BROWSERBASE_API_KEY,
       projectId: env.BROWSERBASE_PROJECT_ID,
-      env: env.BROWSERBASE_ENV,
+      env: env.BROWSER_ENV,
     });
   }
 
