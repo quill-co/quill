@@ -3,6 +3,11 @@ node_modules
 src/config/profile.ts
 dist
 src/config/resume.pdf
+.DS_Store
+bun.lockb
 
 # SQLite database
 *.db
+
+# IDE Files
+.vscode
