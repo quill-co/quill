@@ -6,8 +6,7 @@ import { ScraperManager } from "./lib/scrapers/manager";
 async function main() {
   logger.info("Starting Quill");
 
-  const scraperManager = new ScraperManager([new IndeedScraper()]);
-  await scraperManager.startScrapers();
+  await new ScraperManager([new IndeedScraper()]).startScrapers();
 }
 
 main();
