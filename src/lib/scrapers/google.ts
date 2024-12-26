@@ -31,9 +31,11 @@ export class GoogleScraper extends BaseScraper {
 
     const searchUrl = this.buildSearchUrl(this.query);
 
-    await this.stagehand.page.goto(searchUrl);
+    const { page } = this.stagehand;
 
-    const { listings } = await this.stagehand.extract({
+    await page.goto(searchUrl);
+
+    const { listings } = await page.extract({
       instruction: buildExtractionPrompt(),
       schema: z.object({
         listings: z.array(JobListingSchema),
