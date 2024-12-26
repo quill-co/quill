@@ -1,24 +1,20 @@
 import { z } from "zod";
 import { Config } from "@quill-co/mailstream";
 
-export type PartialMailConfig = Pick<Config, "email" | "password"> & Partial<Pick<Config, "port">>;
+export type PartialMailConfig = Pick<Config, "email" | "password"> &
+  Partial<Pick<Config, "port">>;
 
 export enum MailboxProvider {
   Gmail = "gmail",
-  Outlook = "outlook"
-}
-
-export enum LLMType {
-  OpenAI = "openai",
-  Anthropic = "anthropic"
+  Outlook = "outlook",
 }
 
 export const ResponseStatusEnum = z.enum([
   "pending",
-  "interview", 
+  "interview",
   "rejected",
   "offer",
-  "under_review"
+  "under_review",
 ]);
 
 export const EmailResponseSchema = z.object({
@@ -28,7 +24,7 @@ export const EmailResponseSchema = z.object({
   status: ResponseStatusEnum,
   date: z.date(),
   emailId: z.string(),
-  rawEmail: z.string().optional()
+  rawEmail: z.string().optional(),
 });
 
 export type EmailResponse = z.infer<typeof EmailResponseSchema>;
@@ -42,7 +38,7 @@ export const ApplicationSchema = z.object({
   emailId: z.string(),
   rawEmail: z.string().optional(),
   createdAt: z.date(),
-  updatedAt: z.date()
+  updatedAt: z.date(),
 });
 
 export type Application = z.infer<typeof ApplicationSchema>;
@@ -54,8 +50,4 @@ export interface ApplicationUpdate {
   status: string;
   emailId: string;
   date: Date;
-}
-
-export interface LLMProvider {
-  analyzeEmail(content: string, subject: string, sender: string): Promise<EmailResponse | null>;
 }
