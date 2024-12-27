@@ -10,6 +10,7 @@ const environmentSchema = z.object({
   ENV: z.union([z.literal("development"), z.literal("production")]),
   BROWSERBASE_PROJECT_ID: z.string().min(1),
   BROWSER_ENV: z.union([z.literal("LOCAL"), z.literal("BROWSERBASE")]),
+  DB_FILE_NAME: z.string().min(1),
 });
 
 const env = environmentSchema.parse(process.env);

@@ -1,9 +1,8 @@
-import { db } from "@/lib/db";
+import { updateApplication, getApplications } from "@/lib/db";
 import { EmailResponse } from "@/types/mail";
 
 (async () => {
   try {
-    await db.init();
     console.log("Database initialized");
 
     // Test application update
@@ -17,14 +16,12 @@ import { EmailResponse } from "@/types/mail";
       rawEmail: "Test email content",
     };
 
-    const application = await db.updateApplication(testResponse);
+    const application = await updateApplication(testResponse);
     console.log("Application updated:", application);
 
     // Test getting all applications
-    const applications = await db.getApplications();
+    const applications = getApplications();
     console.log("All applications:", applications);
-
-    await db.close();
   } catch (error) {
     console.error("Error:", error);
     process.exit(1);
