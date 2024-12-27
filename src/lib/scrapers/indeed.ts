@@ -21,13 +21,15 @@ export class IndeedScraper extends BaseScraper {
   async getJobListings(): Promise<JobListing[]> {
     await this.stagehand.init();
 
-    await this.stagehand.page.goto("https://www.indeed.com/");
+    const { page } = this.stagehand;
+
+    await page.goto("https://www.indeed.com/");
 
     let refreshCount = 0;
     const maxRefreshes = 5;
 
     while (true) {
-      const { isStuck } = await this.stagehand.extract({
+      const { isStuck } = await page.extract({
         instruction: "extract if the page is stuck on a captcha",
         schema: z.object({
           isStuck: z.boolean(),
@@ -41,7 +43,7 @@ export class IndeedScraper extends BaseScraper {
         }
         logger.error("Page is stuck on CF captcha, refreshing...");
         try {
-          await this.stagehand.page.reload();
+          await page.reload();
           refreshCount++;
         } catch (error) {
           logger.error("Failed to reload page, retrying...");
@@ -52,11 +54,11 @@ export class IndeedScraper extends BaseScraper {
       }
     }
 
-    await this.stagehand.act({
+    await page.act({
       action: buildActionPrompt(),
     });
 
-    const { listings } = await this.stagehand.extract({
+    const { listings } = await page.extract({
       instruction: buildExtractionPrompt(),
       schema: z.object({
         listings: z.array(JobListingSchema),

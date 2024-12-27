@@ -24,9 +24,11 @@ export default class LeverWorker extends BaseWorker {
   async apply(listing: JobListing): Promise<void> {
     this.log(`Applying to ${listing.title} at ${listing.company}`);
 
-    await this.stagehand.page.goto(listing.url);
+    const { page } = this.stagehand;
 
-    const { isApplicationPage } = await this.stagehand.extract({
+    await page.goto(listing.url);
+
+    const { isApplicationPage } = await page.extract({
       instruction:
         "Determine if the current page is an application page or if we need to navigate to the application page",
       schema: z.object({
@@ -35,18 +37,15 @@ export default class LeverWorker extends BaseWorker {
     });
 
     if (!isApplicationPage) {
-      await this.stagehand.act({
+      await page.act({
         action: "navigate to the application page",
       });
     }
 
-    const uploadResumeButton = await this.stagehand.page.$(
-      "#resume-upload-input",
-    );
+    const uploadResumeButton = await page.$("#resume-upload-input");
 
     if (uploadResumeButton?.isVisible()) {
-      const fileChooserPromise =
-        this.stagehand.page.waitForEvent("filechooser");
+      const fileChooserPromise = page.waitForEvent("filechooser");
       await uploadResumeButton.click();
       const fileChooser = await fileChooserPromise;
       await fileChooser.setFiles(
@@ -59,21 +58,21 @@ export default class LeverWorker extends BaseWorker {
         continue;
       }
 
-      const element = await this.stagehand.page.$(selector);
+      const element = await page.$(selector);
       if (element?.isVisible()) {
         await element.fill(value);
       }
     }
 
-    await this.stagehand.act({
+    await page.act({
       action: `if there is a question about sponsorship, select ${profile.needsSponsorship ? "Yes" : "No"}`,
     });
 
-    await this.stagehand.act({
+    await page.act({
       action: `if there is a question about race, select ${profile.race}`,
     });
 
-    await this.stagehand.act({
+    await page.act({
       action: `if there is a question about protected veteran status, select ${profile.protectedVeteran ? "Yes" : "No"}`,
     });
   }
