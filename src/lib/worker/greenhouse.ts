@@ -12,7 +12,9 @@ export default class GreenhouseWorker extends BaseWorker {
   async apply(listing: JobListing): Promise<void> {
     this.log(`Applying to ${listing.title} at ${listing.company}`);
 
-    await this.stagehand.page.goto(listing.url);
+    const { page } = this.stagehand;
+
+    await page.goto(listing.url);
 
     // const frame = await this.stagehand.page.locator("#grnhse_iframe");
     // if (frame) {
@@ -35,7 +37,7 @@ export default class GreenhouseWorker extends BaseWorker {
     //   this.log("No iframe with id 'grnhse_iframe' found");
     // }
 
-    await this.stagehand.act({
+    await page.act({
       action: buildApplyPrompt(),
     });
   }
