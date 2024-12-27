@@ -2,7 +2,7 @@ import env from "@/lib/env";
 import { BaseMailWorker } from "./base";
 import { MailboxProvider } from "@/types/mail";
 import { Config, Mail } from "@quill-co/mailstream";
-import { db } from "@/lib/db";
+import { updateApplication } from "@/lib/db";
 import { mailConfig } from "@/config/mail.example";
 import { hosts } from "./hosts";
 import { LLMType } from "@/types/llm";
@@ -24,7 +24,6 @@ export default class MailWorker extends BaseMailWorker {
   }
 
   async init() {
-    await db.init();
     await super.init();
   }
 
@@ -42,13 +41,12 @@ export default class MailWorker extends BaseMailWorker {
     );
 
     if (response) {
-      await db.updateApplication(response);
+      await updateApplication(response);
       this.log(`Updated application status: ${JSON.stringify(response)}`);
     }
   }
 
   async stop() {
     await super.stop();
-    await db.close();
   }
 }
