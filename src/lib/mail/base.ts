@@ -1,23 +1,20 @@
 import logger from "@/lib/logger";
-import { LLMType } from "@/types/mail";
-import { OpenAIProvider } from "../ai/openai-provider";
-import { AnthropicProvider } from "../ai/anthropic-provider";
+import { LLMType } from "@/types/llm";
 import { Client, Config, Mail } from "@quill-co/mailstream";
+import { LLMProvider } from "../llm";
 
 export abstract class BaseMailWorker {
   protected client!: Client;
   protected checkInterval: NodeJS.Timeout | null = null;
   private workerId: string;
-  protected aiProvider: OpenAIProvider | AnthropicProvider;
+  protected LLMProvider: LLMProvider;
 
   constructor(
     protected config: Config,
-    provider: LLMType = LLMType.OpenAI
+    provider: LLMType,
   ) {
     this.workerId = crypto.randomUUID();
-    this.aiProvider = provider === LLMType.OpenAI ? 
-      new OpenAIProvider() : 
-      new AnthropicProvider();
+    this.LLMProvider = new LLMProvider(provider);
   }
 
   protected log(message: string) {
@@ -27,14 +24,14 @@ export abstract class BaseMailWorker {
   async init() {
     this.client = await Client.create(this.config);
     this.log("Mail worker initialized");
-    
+
     await this.startListening();
   }
 
   private async startListening() {
     this.client.on("mail", this.processMail.bind(this));
     await this.client.getUnseenMails();
-    
+
     this.checkInterval = setInterval(async () => {
       try {
         await this.client.getUnseenMails();

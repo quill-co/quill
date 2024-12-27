@@ -38,8 +38,13 @@
   },
   "homepage": "https://github.com/quill-co/quill#readme",
   "dependencies": {
+    "@ai-sdk/anthropic": "^1.0.6",
+    "@ai-sdk/google": "^1.0.12",
+    "@ai-sdk/mistral": "^1.0.6",
+    "@ai-sdk/openai": "^1.0.11",
     "@browserbasehq/stagehand": "^1.8.0",
     "@quill-co/mailstream": "^1.0.0",
+    "ai": "^4.0.22",
     "dotenv": "^16.4.7",
     "p-queue": "^8.0.1",
     "pino": "^9.6.0",
