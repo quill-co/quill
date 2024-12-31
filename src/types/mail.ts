@@ -17,7 +17,7 @@ export const EmailResponseSchema = z.object({
   status: ApplicationStatusEnum,
   date: z.date(),
   emailId: z.string(),
-  rawEmail: z.string().optional(),
+  rawEmail: z.string(),
 });
 
 export type EmailResponse = z.infer<typeof EmailResponseSchema>;
