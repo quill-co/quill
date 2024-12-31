@@ -9,6 +9,7 @@ export const profile: Profile = {
   contactInfo: {
     email: "john.doe@example.com",
     phone: "1234567890",
+    password: "thisisapassword123!",
     address: {
       street: "123 Main St",
       city: "Anytown",
