@@ -1,20 +1,42 @@
 import { db } from '../client';
 import { applications } from '../schema/applications';
 import { eq } from 'drizzle-orm';
-import  { EmailResponse, Application, ResponseStatusEnum } from '@/types/mail';
+import { EmailResponse } from '@/types/mail';
+import  { Application, ApplicationStatus, ApplicationStatusEnum } from '@/types/applications';
+import { isValidTransition } from './application-status-flow';
 import { z } from 'zod';
+
 
 // Helper to convert DB row to Application type
 const mapToApplication = (row: typeof applications.$inferSelect): Application => ({
     ...row,
     createdAt: new Date(row.createdAt),
     updatedAt: new Date(row.updatedAt),
-    status: row.status as z.infer<typeof ResponseStatusEnum>,
+    status: row.status as z.infer<typeof ApplicationStatusEnum>,
     rawEmail: row.rawEmail ?? undefined,
 });
 
 export async function updateApplication(response: EmailResponse): Promise<Application> {
   const now = new Date();
+  
+  // Get existing application if any
+  const existing = await db
+    .select()
+    .from(applications)
+    .where(eq(applications.emailId, response.emailId))
+    .get();
+
+  const parsedStatus = ApplicationStatusEnum.safeParse(response.status);
+  if (!parsedStatus.success) {
+    throw new Error(`Invalid status: ${response.status}`);
+  }
+
+  // Validate status transition if this is an update
+  if (existing && existing.status !== parsedStatus.data) {
+    if (!isValidTransition(existing.status as ApplicationStatus, parsedStatus.data)) {
+      throw new Error(`Invalid status transition from ${existing.status} to ${parsedStatus.data}`);
+    }
+  }
   
   const result = db
     .insert(applications)
