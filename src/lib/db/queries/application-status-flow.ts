@@ -1,7 +1,7 @@
 import { db } from '../client';
 import { applicationStatusFlow } from '../schema/application-status-flow';
 import { eq, and } from 'drizzle-orm';
-import { ApplicationStatusEnum } from '@/types/applications';
+import { APPLICATION_STATUS_TRANSITIONS, ApplicationStatusEnum } from '@/types/applications';
 import { z } from 'zod';
 
 export type StatusTransition = {
@@ -49,16 +49,7 @@ export function isValidTransition(
 }
 
 export function initializeStatusFlow() {
-    const transitions = [
-        { currentStatus: 'pending', nextStatus: 'under_review' },
-        { currentStatus: 'under_review', nextStatus: 'interview' },
-        { currentStatus: 'interview', nextStatus: 'offer' },
-        { currentStatus: 'interview', nextStatus: 'rejected' },
-        { currentStatus: 'offer', nextStatus: null },
-        { currentStatus: 'rejected', nextStatus: null },
-    ] as const;
-
-    transitions.forEach(transition => {
+    APPLICATION_STATUS_TRANSITIONS.forEach(transition => {
         db.insert(applicationStatusFlow)
             .values({
                 currentStatus: transition.currentStatus,

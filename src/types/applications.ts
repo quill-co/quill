@@ -8,6 +8,15 @@ export const ApplicationStatusEnum = z.enum([
   "under_review",
 ]);
 
+export const APPLICATION_STATUS_TRANSITIONS = [
+  { currentStatus: 'pending', nextStatus: 'under_review' },
+  { currentStatus: 'under_review', nextStatus: 'interview' },
+  { currentStatus: 'interview', nextStatus: 'offer' },
+  { currentStatus: 'interview', nextStatus: 'rejected' },
+  { currentStatus: 'offer', nextStatus: null },
+  { currentStatus: 'rejected', nextStatus: null },
+] as const;
+
 export type ApplicationStatus = z.infer<typeof ApplicationStatusEnum>;
 
 export const ApplicationSchema = z.object({
