@@ -20,7 +20,7 @@ export async function updateApplication(response: EmailResponse): Promise<Applic
   const now = new Date();
   
   // Get existing application if any
-  const existing = await db
+  const existing = db
     .select()
     .from(applications)
     .where(eq(applications.emailId, response.emailId))
