@@ -10,6 +10,8 @@ Quill is an intelligent job application automation system that streamlines the p
 - Saaim [@saaimk1](https://github.com/saaimk1) - Frontend Developer & Data Engineer, Junior at Rutgers
 - Sameel [@sameelarif](https://www.sameel.dev) - Software Developer, Junior at Rutgers
 
+![Quill Desktop Interface](./public/images/desktop.jpeg)
+
 ## How It Works
 
 ### Architecture Overview
