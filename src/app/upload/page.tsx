@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Upload } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { uploadResume } from "../actions/uploadResume";
 
 export default function UploadPage() {
   const searchParams = useSearchParams();
@@ -28,13 +29,11 @@ export default function UploadPage() {
     formData.append("resume", file);
 
     try {
-      // Fake upload function - replace with actual API call
-      setTimeout(() => {
-        setUploading(false);
-        setMessage("Resume uploaded successfully!");
-        router.push(`/selectModel`); // Pass the model to the next page
-      }, 2000);
+      const { id } = await uploadResume(formData);
+      console.log(id);
+      router.push(`/selectModel?id=${id}`);
     } catch (error) {
+      console.error("Error uploading resume:", error);
       setMessage("An error occurred while uploading the file.");
       setUploading(false);
     }
@@ -131,7 +130,11 @@ export default function UploadPage() {
 
               {message && (
                 <p
-                  className={`mt-4 text-sm text-center ${message.includes("successfully") ? "text-green-400" : "text-red-400"}`}
+                  className={`mt-4 text-sm text-center ${
+                    message.includes("successfully")
+                      ? "text-green-400"
+                      : "text-red-400"
+                  }`}
                 >
                   {message}
                 </p>

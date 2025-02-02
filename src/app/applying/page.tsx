@@ -28,8 +28,8 @@ export default function ApplyingPage() {
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-600"></div>
           </div>
           <p className="text-center text-gray-600 mt-4">
-            This process may take a few minutes. We'll notify you once it's
-            complete.
+            This process may take a few minutes. We&apos;ll notify you once
+            it&apos;s complete.
           </p>
         </CardContent>
       </Card>
