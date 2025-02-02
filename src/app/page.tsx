@@ -1,7 +1,7 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Code2, Cpu, Network } from "lucide-react"
-import Image from "next/image"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Code2, Cpu, Network } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -30,24 +30,23 @@ export default function Home() {
           {/* Hero Section */}
           <div className="space-y-8 animate-[float_6s_ease-in-out_infinite]">
             {/* <h1 className="text-8xl md:text-[10rem] font-bold tracking-tight text-gradient">Quill</h1> */}
-            
 
             {/* ✅ LinkedIn Banner Image - Optimized with Next.js Image */}
             <div className="flex justify-center items-center mt-6">
               <Image
-                src="/images/Group 2.png"  // ✅ Ensure this image is in public/images/
+                src="/images/Group 2.png" // ✅ Ensure this image is in public/images/
                 alt="Group 2"
-                width={470}  // Adjust as needed
+                width={470} // Adjust as needed
                 height={300} // Adjust as needed
                 className="rounded-xl"
               />
-              
             </div>
           </div>
 
           {/* Description */}
           <p className="text-xl md:text-2xl text-[#E2E1E6]/80 max-w-2xl mx-auto">
-          We match and apply you to your dream jobs, and you don&apos;t have to lift a finger.
+            We match and apply you to your dream jobs, and you don&apos;t have
+            to lift a finger.
           </p>
 
           {/* CTA Button */}
@@ -86,9 +85,14 @@ export default function Home() {
                 desc: "Track and optimize your application success",
               },
             ].map((feature, i) => (
-              <div key={i} className="glass-effect p-8 rounded-xl hover-glow border border-[#E2E1E6]/10">
+              <div
+                key={i}
+                className="glass-effect p-8 rounded-xl hover-glow border border-[#E2E1E6]/10"
+              >
                 <feature.icon className="h-8 w-8 text-[#E2E1E6] mb-4" />
-                <h3 className="text-[#E2E1E6] font-semibold text-lg mb-2">{feature.title}</h3>
+                <h3 className="text-[#E2E1E6] font-semibold text-lg mb-2">
+                  {feature.title}
+                </h3>
                 <p className="text-[#E2E1E6]/60">{feature.desc}</p>
               </div>
             ))}
@@ -103,13 +107,17 @@ export default function Home() {
               { value: "100K+", label: "Applications" },
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-3xl font-bold text-gradient">{stat.value}</div>
-                <div className="text-[#E2E1E6]/60 text-sm mt-1">{stat.label}</div>
+                <div className="text-3xl font-bold text-gradient">
+                  {stat.value}
+                </div>
+                <div className="text-[#E2E1E6]/60 text-sm mt-1">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

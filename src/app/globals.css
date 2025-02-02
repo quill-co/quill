@@ -30,7 +30,10 @@
 }
 
 .tech-grid {
-  background-image: linear-gradient(rgba(226, 225, 230, 0.05) 1px, transparent 1px),
+  background-image: linear-gradient(
+      rgba(226, 225, 230, 0.05) 1px,
+      transparent 1px
+    ),
     linear-gradient(90deg, rgba(226, 225, 230, 0.05) 1px, transparent 1px);
   background-size: 30px 30px;
   background-position: center center;
@@ -70,7 +73,7 @@
 .code-pattern {
   position: absolute;
   font-family: monospace;
-  color: rgba(226, 225, 230, 0.6             );
+  color: rgba(226, 225, 230, 0.6);
   font-size: 14px;
   white-space: pre;
   pointer-events: none;
@@ -103,7 +106,11 @@
   left: 50%;
   width: 80%;
   height: 10px;
-  background: radial-gradient(circle, rgba(173, 140, 255, 0.6) 0%, rgba(0, 0, 0, 0) 80%);
+  background: radial-gradient(
+    circle,
+    rgba(173, 140, 255, 0.6) 0%,
+    rgba(0, 0, 0, 0) 80%
+  );
   transform: translateX(-50%);
   opacity: 0.8;
 }
