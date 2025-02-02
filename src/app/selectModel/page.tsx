@@ -1,14 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
 const models = [
   {
-    id: "gpt-4",
-    name: "GPT-4",
+    id: "openai",
+    name: "GPT-4o",
     description:
       "Most powerful model, best for complex reasoning and accuracy.",
     speed: "Fast",
@@ -20,7 +20,7 @@ const models = [
     speed: "Fast",
   },
   {
-    id: "claude",
+    id: "anthropic",
     name: "Claude",
     description: "Great for analytical thinking and long-form responses.",
     speed: "Standard",
@@ -36,8 +36,11 @@ const models = [
 export default function SelectModelPage() {
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
   const handleSelectModel = (modelId: string) => {
-    router.push(`/applying?modelID=${modelId}`);
+    router.push(`/applying?modelID=${modelId}&id=${id}`);
   };
 
   return (

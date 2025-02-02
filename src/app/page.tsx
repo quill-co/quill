@@ -31,7 +31,6 @@ export default function Home() {
           <div className="space-y-8 animate-[float_6s_ease-in-out_infinite]">
             {/* <h1 className="text-8xl md:text-[10rem] font-bold tracking-tight text-gradient">Quill</h1> */}
 
-            {/* ✅ LinkedIn Banner Image - Optimized with Next.js Image */}
             <div className="flex justify-center items-center mt-6">
               <Image
                 src="/images/Group 2.png" // ✅ Ensure this image is in public/images/

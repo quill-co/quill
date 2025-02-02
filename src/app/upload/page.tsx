@@ -16,6 +16,7 @@ export default function UploadPage() {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,17 +25,21 @@ export default function UploadPage() {
 
     setUploading(true);
     setMessage("");
+    setStatus("Uploading resume...");
 
     const formData = new FormData();
     formData.append("resume", file);
 
     try {
+      setStatus("AI is analyzing your resume...");
       const { id } = await uploadResume(formData);
       console.log(id);
+      setStatus("Analysis complete! Redirecting...");
       router.push(`/selectModel?id=${id}`);
     } catch (error) {
       console.error("Error uploading resume:", error);
       setMessage("An error occurred while uploading the file.");
+      setStatus("");
       setUploading(false);
     }
   };
@@ -124,9 +129,15 @@ export default function UploadPage() {
                  disabled:opacity-50 disabled:hover:translate-y-0
                  disabled:hover:shadow-none"
                 >
-                  {uploading ? "Uploading..." : "Start Your Journey"}
+                  {uploading ? "Processing..." : "Start Your Journey"}
                 </Button>
               </form>
+
+              {status && (
+                <p className="mt-4 text-sm text-center text-[#E2E1E6]/80">
+                  {status}
+                </p>
+              )}
 
               {message && (
                 <p

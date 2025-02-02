@@ -1,15 +1,45 @@
 "use client";
-import { useRouter } from "next/navigation";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function ApplyingPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const [status, setStatus] = useState("Initializing...");
+  const id = searchParams.get("id");
+
   useEffect(() => {
-    setTimeout(() => {
-      router.push("/table");
-    }, 3000);
-  }, []);
+    // Connect to WebSocket first
+    const ws = new WebSocket(`ws://localhost:8080?clientId=${id}`);
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === "log") {
+        setStatus(data.message);
+      }
+      if (data.message === "Found job listings!") {
+        router.push(`/table?id=${id}`);
+      }
+    };
+
+    // Send HTTP request to start job search after socket is connected
+    fetch("http://localhost:3000/api/apply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        clientId: id,
+      }),
+      mode: "no-cors",
+    });
+
+    return () => {
+      ws.close();
+    };
+  }, [router, id]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-white">
@@ -20,10 +50,7 @@ export default function ApplyingPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-center text-gray-600 mb-4">
-            Our AI is now analyzing your resume and applying to suitable
-            internships for you.
-          </p>
+          <p className="text-center text-gray-600 mb-4">{status}</p>
           <div className="flex justify-center">
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-600"></div>
           </div>

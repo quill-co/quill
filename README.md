@@ -1,4 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Quill - Automated Job Application System](./public/images/banner.png)
+
+# Quill - Automated Job Application System
+
+Quill is an intelligent job application automation system that streamlines the process of applying to multiple job positions. It uses AI to fill out job applications automatically while providing real-time status updates through a modern web interface.
+
+## How It Works
+
+### Architecture Overview
+
+```mermaid
+graph TD
+    A[User] -->|Uploads Resume| B[Upload Page]
+    B -->|Processes| C[AI Model Selection]
+    C -->|Initiates| D[Application Process]
+    D -->|WebSocket Updates| E[Status Dashboard]
+    D -->|Completes| F[Applied Jobs]
+```
+
+### Core Components
+
+#### 1. Resume Upload
+
+- Users begin by uploading their resume in PDF, DOC, or DOCX format
+- The system processes and extracts relevant information from the resume
+- Maximum file size: 10MB
+
+#### 2. Model Selection
+
+- Users can choose different AI models optimized for various job types:
+  - General Applications
+  - Technical Positions
+  - Creative Roles
+  - etc.
+
+#### 3. Real-Time Status Tracking
+
+The application uses WebSocket connections to provide real-time updates on the application process. Status types include:
+
+| Status           | Description                         |
+| ---------------- | ----------------------------------- |
+| Initializing     | Starting the application process    |
+| Filling Out Form | AI is completing application fields |
+| Uploading Resume | Submitting documents                |
+| Completed        | Application successfully submitted  |
+
+#### 4. WebSocket Communication Protocol
+
+The system uses a WebSocket server at port 8080 that handles three types of events:
+
+```typescript
+// New job listing being processed
+{
+  type: "job_listing",
+  data: {
+    company: string,
+    jobTitle: string,
+    url: string,
+    location: string,
+    status: string
+  }
+}
+
+// Status update for existing application
+{
+  type: "status",
+  data: {
+    company: string,
+    jobTitle: string,
+    url: string,
+    location: string,
+    status: string
+  }
+}
+
+// Application completion notification
+{
+  type: "finished",
+  data: {
+    company: string,
+    jobTitle: string,
+    url: string,
+    location: string,
+    status: string
+  }
+}
+```
+
+### User Interface
+
+The application features a modern, responsive interface with:
+
+- Dark theme optimized for reduced eye strain
+- Real-time status updates with color-coded indicators
+- Compact URL display showing only domain names
+- Mobile-responsive tables with horizontal scrolling
+- Progress tracking for each application stage
+
+### Backend Implementation
+
+The backend service that handles resume processing, AI-powered form filling, and WebSocket communication can be found at [github.com/quill-co/quill-backend](https://github.com/quill-co/quill-backend). This service is responsible for:
+
+- Processing uploaded resumes
+- Running AI models for form completion
+- Managing WebSocket connections
+- Handling the job application automation
+- Providing real-time status updates
+
+### Technical Stack
+
+- **Frontend**: Next.js with TypeScript
+- **UI Components**: Custom components with Tailwind CSS
+- **Real-time Updates**: WebSocket protocol
+- **State Management**: React hooks (useState, useEffect)
+- **Routing**: Next.js App Router
+- **Styling**: Tailwind CSS with custom gradients and animations
 
 ## Getting Started
 
