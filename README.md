@@ -4,13 +4,17 @@
 
 Quill is an intelligent job application automation system that streamlines the process of applying to multiple job positions. It uses AI to fill out job applications automatically while providing real-time status updates through a modern web interface.
 
+## Demo Video
+
+Watch our demo to see Quill in action:
+
+[![Watch the Quill Demo](https://img.youtube.com/vi/VCf5094ZVx8/maxresdefault.jpg)](https://www.youtube.com/watch?v=VCf5094ZVx8 "Watch the Quill Demo")
+
 ## Contributors
 
 - Dominic [@reb0und](https://rebound.sh/) - Backend Developer, Freshman at Stevens
 - Saaim [@saaimk1](https://github.com/saaimk1) - Frontend Developer & Data Engineer, Junior at Rutgers
 - Sameel [@sameelarif](https://www.sameel.dev) - Software Developer, Junior at Rutgers
-
-![Quill Desktop Interface](./public/images/desktop.jpeg)
 
 ## How It Works
 
