@@ -39,7 +39,7 @@ export default function Home() {
                 alt="Group 2"
                 width={470}  // Adjust as needed
                 height={300} // Adjust as needed
-                className="rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                className="rounded-xl"
               />
               
             </div>
@@ -47,7 +47,7 @@ export default function Home() {
 
           {/* Description */}
           <p className="text-xl md:text-2xl text-[#E2E1E6]/80 max-w-2xl mx-auto">
-            AI-Powered Career Acceleration Platform
+          We match and apply you to your dream jobs, and you don&apos;t have to lift a finger.
           </p>
 
           {/* CTA Button */}
