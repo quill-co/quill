@@ -7,10 +7,10 @@ export default function Home() {
     <div className="min-h-screen tech-gradient tech-grid overflow-hidden">
       {/* Ambient glows */}
       <div className="glow-effect bg-[#2d1b69] top-1/4 -left-20" />
-      <div className="glow-effect bg-[#E2E1E6] bottom-1/4 -right-20" />
+    <div className="glow-effect bg-[#E2E1E6] bottom-1/4 -right-20" />
 
       {/* Code pattern background */}
-      <div className="code-pattern top-10 left-10 rotate-[-10deg]">
+      <div className="code-pattern top-10 left-10 rotate-[-10deg] text-white">
         {`function accelerateCareer() {
   const ai = new AI();
   return ai.optimize(career);
@@ -30,6 +30,7 @@ export default function Home() {
           <div className="space-y-8 animate-[float_6s_ease-in-out_infinite]">
             <h1 className="text-8xl md:text-[10rem] font-bold tracking-tight text-gradient">Quill</h1>
             <div className="h-1 w-60 mx-auto bg-gradient-to-r from-[#E2E1E6] to-transparent" />
+    
           </div>
 
           {/* Description */}

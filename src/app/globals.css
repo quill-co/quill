@@ -70,9 +70,51 @@
 .code-pattern {
   position: absolute;
   font-family: monospace;
-  color: rgba(226, 225, 230, 0.05);
+  color: rgba(226, 225, 230, 0.6             );
   font-size: 14px;
   white-space: pre;
   pointer-events: none;
 }
 
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(173, 140, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(173, 140, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(173, 140, 255, 0.3);
+  }
+}
+
+.tech-gradient {
+  background: linear-gradient(135deg, #251e40 0%, #140f22 100%);
+}
+
+.underglow {
+  position: relative;
+}
+
+.underglow::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 80%;
+  height: 10px;
+  background: radial-gradient(circle, rgba(173, 140, 255, 0.6) 0%, rgba(0, 0, 0, 0) 80%);
+  transform: translateX(-50%);
+  opacity: 0.8;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 50px rgba(173, 140, 255, 0.4);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #c6b4ff, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
