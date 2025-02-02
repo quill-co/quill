@@ -1,18 +1,14 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowLeft, Upload } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Upload } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState } from "react";
 import { uploadResume } from "../actions/uploadResume";
 
 export default function UploadPage() {
-  const searchParams = useSearchParams();
-  const selectedModel = searchParams.get("model") || "Not Selected";
-
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
@@ -70,10 +66,6 @@ export default function UploadPage() {
             </h1>
             <p className="text-[#E2E1E6]/60 text-xl">
               Let AI optimize your career path
-            </p>
-            {/* ✅ Display the selected model */}
-            <p className="text-lg text-indigo-400">
-              Selected Model: {selectedModel}
             </p>
           </div>
 
