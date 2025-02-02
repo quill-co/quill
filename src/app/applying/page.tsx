@@ -1,6 +1,19 @@
+"use client";
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useEffect } from "react"
 
 export default function ApplyingPage() {
+  const router = useRouter()
+  useEffect( () => {
+    setTimeout(() => {
+      router.push("/table")
+    }, 3000)
+  },[] 
+)
+
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-white">
       <Card className="w-full max-w-md">

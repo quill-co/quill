@@ -1,9 +1,11 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft } from "lucide-react"
 
 export default function TablePage() {
-  // Example data for table
   const [applications, setApplications] = useState([
     {
       company: "Google",
@@ -36,40 +38,59 @@ export default function TablePage() {
   ])
 
   return (
-    <div className="min-h-screen bg-[#1a1a2e] text-white p-10">
-      <h1 className="text-4xl font-bold text-center text-[#E2E1E6] mb-8">Job Application Status</h1>
+    <div className="min-h-screen tech-gradient tech-grid overflow-hidden p-8">
+      {/* Ambient glows */}
+      <div className="glow-effect bg-[#2d1b69] top-1/4 -left-20" />
+      <div className="glow-effect bg-[#E2E1E6] bottom-1/4 -right-20" />
 
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse rounded-lg overflow-hidden shadow-lg">
+      {/* Back Button */}
+      <Link href="/">
+        <Button variant="ghost" className="text-[#E2E1E6]/60 hover:text-[#E2E1E6]">
+          <ArrowLeft className="h-5 w-5 mr-2" />
+          Back
+        </Button>
+      </Link>
+
+      {/* Page Header */}
+      <div className="max-w-5xl mx-auto text-center space-y-6 mt-12">
+        <h1 className="text-6xl md:text-7xl font-bold tracking-tight text-gradient">
+          Job Application Status
+        </h1>
+      </div>
+
+      {/* Table Container */}
+      <div className="max-w-5xl mx-auto mt-12 rounded-2xl glass-effect border-0 shadow-lg hover-glow">
+        <table className="w-full text-left border-collapse">
+          {/* Table Header */}
           <thead>
-            <tr className="bg-[#2d1b69] text-white">
-              <th className="py-3 px-6 text-left">Company</th>
-              <th className="py-3 px-6 text-left">Job Title</th>
-              <th className="py-3 px-6 text-left">URL</th>
-              <th className="py-3 px-6 text-left">Location</th>
-              <th className="py-3 px-6 text-left">Status</th>
+            <tr className="bg-[#2d1b69] text-white text-lg">
+              <th className="py-4 px-6">Company</th>
+              <th className="py-4 px-6">Job Title</th>
+              <th className="py-4 px-6">URL</th>
+              <th className="py-4 px-6">Location</th>
+              <th className="py-4 px-6">Status</th>
             </tr>
           </thead>
+
+          {/* Table Body */}
           <tbody>
             {applications.map((app, index) => (
-              <tr key={index} className="border-b border-[#2d2d4d] hover:bg-[#282848] transition">
-                <td className="py-3 px-6">{app.company}</td>
-                <td className="py-3 px-6">{app.jobTitle}</td>
-                <td className="py-3 px-6">
+              <tr key={index} className="border-b border-[#2d2d4d]/50 hover:bg-[#29294a] transition-all duration-300">
+                <td className="py-4 px-6">{app.company}</td>
+                <td className="py-4 px-6">{app.jobTitle}</td>
+                <td className="py-4 px-6">
                   <a href={app.url} target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline">
                     {app.url}
                   </a>
                 </td>
-                <td className="py-3 px-6">{app.location}</td>
-                <td className="py-3 px-6">
-                  <span
-                    className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      app.status === "Initializing" ? "bg-gray-600 text-gray-200" :
-                      app.status === "Filling Out Form" ? "bg-blue-600 text-blue-100" :
-                      app.status === "Uploading Resume" ? "bg-yellow-600 text-yellow-100" :
-                      "bg-green-600 text-green-100"
-                    }`}
-                  >
+                <td className="py-4 px-6">{app.location}</td>
+                <td className="py-4 px-6">
+                  <span className={`px-3 py-1 rounded-full text-sm font-semibold tracking-wide ${
+                    app.status === "Initializing" ? "bg-gray-700 text-gray-300" :
+                    app.status === "Filling Out Form" ? "bg-blue-600 text-blue-100" :
+                    app.status === "Uploading Resume" ? "bg-yellow-600 text-yellow-100" :
+                    "bg-green-600 text-green-100"
+                  }`}>
                     {app.status}
                   </span>
                 </td>

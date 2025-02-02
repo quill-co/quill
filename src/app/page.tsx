@@ -1,13 +1,14 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Code2, Cpu, Network } from "lucide-react"
+import Image from "next/image"
 
 export default function Home() {
   return (
     <div className="min-h-screen tech-gradient tech-grid overflow-hidden">
       {/* Ambient glows */}
       <div className="glow-effect bg-[#2d1b69] top-1/4 -left-20" />
-    <div className="glow-effect bg-[#E2E1E6] bottom-1/4 -right-20" />
+      <div className="glow-effect bg-[#E2E1E6] bottom-1/4 -right-20" />
 
       {/* Code pattern background */}
       <div className="code-pattern top-10 left-10 rotate-[-10deg] text-white">
@@ -28,9 +29,20 @@ export default function Home() {
         <div className="text-center space-y-12 max-w-5xl mx-auto">
           {/* Hero Section */}
           <div className="space-y-8 animate-[float_6s_ease-in-out_infinite]">
-            <h1 className="text-8xl md:text-[10rem] font-bold tracking-tight text-gradient">Quill</h1>
-            <div className="h-1 w-60 mx-auto bg-gradient-to-r from-[#E2E1E6] to-transparent" />
-    
+            {/* <h1 className="text-8xl md:text-[10rem] font-bold tracking-tight text-gradient">Quill</h1> */}
+            
+
+            {/* ✅ LinkedIn Banner Image - Optimized with Next.js Image */}
+            <div className="flex justify-center items-center mt-6">
+              <Image
+                src="/images/Group 2.png"  // ✅ Ensure this image is in public/images/
+                alt="Group 2"
+                width={470}  // Adjust as needed
+                height={300} // Adjust as needed
+                className="rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+              />
+              
+            </div>
           </div>
 
           {/* Description */}
@@ -101,4 +113,3 @@ export default function Home() {
     </div>
   )
 }
-

@@ -32,7 +32,7 @@ export default function UploadPage() {
       setTimeout(() => {
         setUploading(false)
         setMessage("Resume uploaded successfully!")
-        router.push(`/applying?model=${selectedModel}`) // Pass the model to the next page
+        router.push(`/selectModel`) // Pass the model to the next page
       }, 2000)
     } catch (error) {
       setMessage("An error occurred while uploading the file.")
@@ -47,6 +47,7 @@ export default function UploadPage() {
       <div className="glow-effect bg-[#E2E1E6] bottom-1/4 -right-20" />
 
       <div className="relative min-h-screen p-4 md:p-8">
+        
         {/* Back button */}
         <Link href="/">
           <Button variant="ghost" className="text-[#E2E1E6]/60 hover:text-[#E2E1E6]">
